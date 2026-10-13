@@ -38,8 +38,8 @@ def test_webhook_validates_email_sale_product_and_text_fields(read_source, expec
 def test_webhook_requires_remote_sale_verification_before_subscription_update(read_source):
     source = read_source("supabase/functions/gumroad-webhook/index.ts")
 
-    verification_index = source.index("const isValidSale = await verifySaleWithGumroad")
+    verification_index = source.index("const verifiedSale = await verifySaleWithGumroad")
     upsert_index = source.index(".from('subscriptions')")
 
     assert verification_index < upsert_index
-    assert "return data.success === true && data.sale != null;" in source
+    assert "if (data?.success !== true || !sale) return null;" in source

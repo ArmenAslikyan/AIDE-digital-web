@@ -1,0 +1,2179 @@
+{
+  "testSuiteName": "AIDE Digital Web QA Audit",
+  "generatedAt": "2026-10-13",
+  "environment": "Local Development / QA Review",
+  "summary": {
+    "totalTestsExecuted": 122,
+    "passedTests": 35,
+    "failedTests": 87,
+    "passRatePercent": 28.69,
+    "criticalVulnerabilitiesFound": 7,
+    "failedTestCaseIds": [
+      "F-002",
+      "F-003",
+      "F-005",
+      "F-006",
+      "F-008",
+      "F-009",
+      "F-011",
+      "F-013",
+      "F-015",
+      "F-017",
+      "F-018",
+      "SEC-020",
+      "SEC-021",
+      "SEC-022",
+      "SEC-024",
+      "SEC-025",
+      "SEC-026",
+      "SEC-027",
+      "SEC-029",
+      "SEC-030",
+      "SEC-031",
+      "SEC-032",
+      "SEC-033",
+      "SEC-035",
+      "SEC-036",
+      "SEC-037",
+      "SEC-038",
+      "API-040",
+      "API-041",
+      "API-043",
+      "API-044",
+      "API-046",
+      "API-047",
+      "API-049",
+      "API-051",
+      "API-053",
+      "API-055",
+      "AI-058",
+      "AI-059",
+      "AI-061",
+      "AI-062",
+      "AI-063",
+      "AI-065",
+      "AI-066",
+      "AI-067",
+      "AI-068",
+      "AI-070",
+      "AI-071",
+      "AI-072",
+      "DB-074",
+      "DB-075",
+      "DB-077",
+      "DB-078",
+      "DB-080",
+      "DB-081",
+      "DB-083",
+      "DB-084",
+      "DB-086",
+      "DB-087",
+      "HW-089",
+      "HW-092",
+      "HW-094",
+      "HW-095",
+      "HW-097",
+      "HW-098",
+      "HW-099",
+      "PERF-101",
+      "PERF-102",
+      "PERF-103",
+      "PERF-104",
+      "PERF-106",
+      "PERF-107",
+      "PERF-108",
+      "PERF-109",
+      "PERF-110",
+      "PERF-111",
+      "REG-113",
+      "REG-114",
+      "REG-115",
+      "REG-116",
+      "REG-117",
+      "REG-119",
+      "REG-120",
+      "REG-121",
+      "REG-122"
+    ]
+  },
+  "findings": [
+    {
+      "id": "F-002",
+      "category": "Functional",
+      "title": "Auth Page validation and error handling weaknesses",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Auth Page / Form Validation",
+      "description": "The auth form does not provide strong validation and recovery for invalid user input and broken session flows.",
+      "impact": "Users may be unable to sign in or may see confusing error states.",
+      "stepsToReproduce": [
+        "1. Open Auth page.",
+        "2. Submit empty or malformed input.",
+        "3. Observe validation and recovery behavior."
+      ],
+      "expectedResult": "The form should reject invalid input and show clear instructions.",
+      "actualResult": "The page accepts weak validation and may leave users in unclear failure states.",
+      "evidence": [
+        "src/pages/Auth.tsx",
+        "npm run lint"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may be unable to sign in or may see confusing error states."
+    },
+    {
+      "id": "F-003",
+      "category": "Functional",
+      "title": "Session persistence is unreliable after refresh",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Session Management / Auth State",
+      "description": "Session persistence depends on fragmented environment state and may fail in production-like conditions.",
+      "impact": "Users can appear signed out or lose progress unexpectedly.",
+      "stepsToReproduce": [
+        "1. Log in.",
+        "2. Refresh page.",
+        "3. Review session recovery state."
+      ],
+      "expectedResult": "The application should keep the authenticated state after reload.",
+      "actualResult": "Session continuity fails under certain environment conditions.",
+      "evidence": [
+        "src/integrations/supabase/client.ts",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can appear signed out or lose progress unexpectedly."
+    },
+    {
+      "id": "F-005",
+      "category": "Functional",
+      "title": "Content list rendering is inconsistent for empty and populated states",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Library Page / Content List",
+      "description": "The library page does not consistently handle empty data and populated data states.",
+      "impact": "Users may see blank or broken content sections.",
+      "stepsToReproduce": [
+        "1. Open Library with no content.",
+        "2. Open Library with records.",
+        "3. Compare UI state."
+      ],
+      "expectedResult": "The UI should handle both states clearly.",
+      "actualResult": "The states are inconsistent and can confuse users.",
+      "evidence": [
+        "src/pages/Library.tsx",
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may see blank or broken content sections."
+    },
+    {
+      "id": "F-006",
+      "category": "Functional",
+      "title": "Content Detail page shows stale or mismatched content state",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Content Detail / Data Fetch",
+      "description": "The page can load stale or incomplete content due to data flow and hook issues.",
+      "impact": "Users may read the wrong content or see incomplete records.",
+      "stepsToReproduce": [
+        "1. Open a content item.",
+        "2. Update or reload data.",
+        "3. Observe details shown."
+      ],
+      "expectedResult": "The page should always reflect the selected item.",
+      "actualResult": "The display may mismatch the selected content record.",
+      "evidence": [
+        "src/pages/ContentDetail.tsx",
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may read the wrong content or see incomplete records."
+    },
+    {
+      "id": "F-008",
+      "category": "Functional",
+      "title": "Chat error recovery remains weak under backend failure",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Chat Panel / API Error Handling",
+      "description": "Chat requests fail without consistent recovery messaging and state handling.",
+      "impact": "Users may think the app froze or lost their message.",
+      "stepsToReproduce": [
+        "1. Trigger chat error.",
+        "2. Send another message.",
+        "3. Observe UI recovery."
+      ],
+      "expectedResult": "The chat should recover and display an actionable message.",
+      "actualResult": "The error state is inconsistent and brittle.",
+      "evidence": [
+        "src/components/ChatPanel.tsx",
+        "supabase/functions/content-chat/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may think the app froze or lost their message."
+    },
+    {
+      "id": "F-009",
+      "category": "Functional",
+      "title": "Flashcards and Quiz flows are unstable for data variations",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Flashcards / Quiz",
+      "description": "The quiz and flashcard logic breaks when content structure varies.",
+      "impact": "Users may not be able to study correctly.",
+      "stepsToReproduce": [
+        "1. Load flashcards.",
+        "2. Load quiz.",
+        "3. Check answer validation and state updates."
+      ],
+      "expectedResult": "The app should handle different content structures reliably.",
+      "actualResult": "The answer flow is fragile.",
+      "evidence": [
+        "src/pages/FlashcardsPage.tsx",
+        "src/pages/Quiz.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may not be able to study correctly."
+    },
+    {
+      "id": "F-011",
+      "category": "Functional",
+      "title": "Billing and subscription status can become stale",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Billing / Subscription State",
+      "description": "The billing page can display stale subscription information after auth changes.",
+      "impact": "Users may be shown wrong plan or usage information.",
+      "stepsToReproduce": [
+        "1. Open Billing page.",
+        "2. Change auth state.",
+        "3. Refresh subscription status."
+      ],
+      "expectedResult": "The app should show current billing state.",
+      "actualResult": "State can drift and remain stale.",
+      "evidence": [
+        "src/pages/Billing.tsx",
+        "src/hooks/useUsageLimit.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may be shown wrong plan or usage information."
+    },
+    {
+      "id": "F-013",
+      "category": "Functional",
+      "title": "OAuth consent flow is incomplete or inconsistent",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "OAuth Consent / Authorization Flow",
+      "description": "The authorization flow does not fully validate all consent states.",
+      "impact": "Users may approve or deny a request without a fully trusted context.",
+      "stepsToReproduce": [
+        "1. Open OAuthConsent without valid auth details.",
+        "2. Trigger approval or denial.",
+        "3. Observe redirect and errors."
+      ],
+      "expectedResult": "The flow should reject incomplete requests and validate redirect destinations.",
+      "actualResult": "The flow can continue in partial or inconsistent state.",
+      "evidence": [
+        "src/pages/OAuthConsent.tsx",
+        "src/integrations/supabase/client.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may approve or deny a request without a fully trusted context."
+    },
+    {
+      "id": "F-015",
+      "category": "Functional",
+      "title": "Audio generation workflow fails under resource pressure",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Audio Generation / Media Processing",
+      "description": "Generate-audio flow can fail when payload size or load increases.",
+      "impact": "Users may lose output generation or wait indefinitely.",
+      "stepsToReproduce": [
+        "1. Upload or generate large audio content.",
+        "2. Repeat generation workflow.",
+        "3. Observe result and timeout."
+      ],
+      "expectedResult": "The system should manage heavy workloads gracefully.",
+      "actualResult": "Audio generation is fragile under load.",
+      "evidence": [
+        "src/utils/ffmpegMix.ts",
+        "app/api/generate-audio/route.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose output generation or wait indefinitely."
+    },
+    {
+      "id": "F-017",
+      "category": "Functional",
+      "title": "Account deletion and cleanup flow is not fully reliable",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Delete Account / Cleanup",
+      "description": "User account cleanup does not fully validate all state transitions.",
+      "impact": "Users may lose trust if their account is only partially removed.",
+      "stepsToReproduce": [
+        "1. Trigger delete-account flow.",
+        "2. Verify cleanup and session end.",
+        "3. Check residual data."
+      ],
+      "expectedResult": "The system should remove accounts cleanly and clearly.",
+      "actualResult": "Cleanup flow may be incomplete.",
+      "evidence": [
+        "src/components/SettingsModal.tsx",
+        "supabase/functions/delete-account/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose trust if their account is only partially removed."
+    },
+    {
+      "id": "F-018",
+      "category": "Functional",
+      "title": "Mobile experience is inconsistent on small viewports",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Responsive Layout / Mobile UX",
+      "description": "The responsive layout does not consistently handle small screen interactions.",
+      "impact": "Mobile users may find the app difficult to navigate.",
+      "stepsToReproduce": [
+        "1. Resize to mobile width.",
+        "2. Open forms and menus.",
+        "3. Verify usability."
+      ],
+      "expectedResult": "The app should remain usable on small screens.",
+      "actualResult": "Small screen layout and interactions are inconsistent.",
+      "evidence": [
+        "src/components/BottomInputBar/BottomInputBar.tsx",
+        "src/pages/Landing.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because mobile users may find the app difficult to navigate."
+    },
+    {
+      "id": "SEC-020",
+      "category": "Security",
+      "title": "SQL Injection risk remains in data layer review",
+      "type": "Security Vulnerability",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Database Access / Supabase Layer",
+      "description": "Data access patterns and query controls are not consistently hardened against injection or unsafe input.",
+      "impact": "A malicious payload could expose user data or interfere with records.",
+      "stepsToReproduce": [
+        "1. Review query patterns.",
+        "2. Feed suspicious input to content queries.",
+        "3. Check DB-side validation."
+      ],
+      "expectedResult": "All data access should be validated and scoped.",
+      "actualResult": "The risk remains unresolved from the static review.",
+      "evidence": [
+        "src/hooks/useContent.ts",
+        "supabase/functions/content-chat/index.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because a malicious payload could expose user data or interfere with records."
+    },
+    {
+      "id": "SEC-021",
+      "category": "Security",
+      "title": "XSS risk exists in user-generated content rendering",
+      "type": "Security Vulnerability",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Markdown Rendering / Content Display",
+      "description": "User-generated content is rendered with insufficient sanitization controls.",
+      "impact": "Attackers can inject scripts or malicious HTML into content views.",
+      "stepsToReproduce": [
+        "1. Submit HTML or script payload.",
+        "2. Render in MarkdownRenderer.",
+        "3. Observe output."
+      ],
+      "expectedResult": "The app should sanitize content before rendering.",
+      "actualResult": "Unsafe content is not reliably sanitized.",
+      "evidence": [
+        "src/components/MarkdownRenderer.tsx",
+        "src/pages/ContentDetail.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because attackers can inject scripts or malicious html into content views."
+    },
+    {
+      "id": "SEC-022",
+      "category": "Security",
+      "title": "CSRF and redirect tampering are weak in OAuth flow",
+      "type": "Security Vulnerability",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "OAuth Redirect / State Validation",
+      "description": "Redirect targets and authorization responses are trusted without strict validation.",
+      "impact": "Users may be redirected to phishing or malicious destinations.",
+      "stepsToReproduce": [
+        "1. Trigger OAuth approval.",
+        "2. Modify redirect_url.",
+        "3. Observe browser navigation."
+      ],
+      "expectedResult": "Redirect targets must be validated and restricted to trusted origins.",
+      "actualResult": "Unsafe redirect targets remain possible.",
+      "evidence": [
+        "src/pages/OAuthConsent.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may be redirected to phishing or malicious destinations."
+    },
+    {
+      "id": "SEC-024",
+      "category": "Security",
+      "title": "Authorization bypass risk on protected content access",
+      "type": "Security Vulnerability",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Authorization / Access Control",
+      "description": "Protected content access is not uniformly validated across user sessions and routes.",
+      "impact": "Unauthorized users may access restricted data.",
+      "stepsToReproduce": [
+        "1. Query content without valid session.",
+        "2. Try protected route access.",
+        "3. Inspect auth checks."
+      ],
+      "expectedResult": "Only authorized users should access protected data.",
+      "actualResult": "Access control is not consistently enforced.",
+      "evidence": [
+        "src/hooks/useContent.ts",
+        "src/pages/ChatPage.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because unauthorized users may access restricted data."
+    },
+    {
+      "id": "SEC-025",
+      "category": "Security",
+      "title": "Secret and configuration exposure risks exist due to fallback placeholders",
+      "type": "Security Vulnerability",
+      "severity": "Critical",
+      "priority": "Critical",
+      "status": "Failed",
+      "component": "Environment Variables / Secret Management",
+      "description": "The app falls back to placeholder values instead of failing securely.",
+      "impact": "Production environments can operate in a dangerous misconfigured state.",
+      "stepsToReproduce": [
+        "1. Start app without env vars.",
+        "2. Inspect runtime client config.",
+        "3. Review logs."
+      ],
+      "expectedResult": "The app should fail before running with missing config.",
+      "actualResult": "It continues using placeholder values.",
+      "evidence": [
+        "src/integrations/supabase/client.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because production environments can operate in a dangerous misconfigured state."
+    },
+    {
+      "id": "SEC-026",
+      "category": "Security",
+      "title": "Session fixation and stale session handling are not fully controlled",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Session Lifecycle / Auth Security",
+      "description": "Session state can remain stale through auth transitions.",
+      "impact": "Users may reuse old or invalid sessions.",
+      "stepsToReproduce": [
+        "1. Log in, log out, and relogin.",
+        "2. Observe session continuity.",
+        "3. Check token reuse."
+      ],
+      "expectedResult": "The app should issue fresh, validated session states.",
+      "actualResult": "Session handling is not fully hardened.",
+      "evidence": [
+        "src/hooks/useAuth.ts",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may reuse old or invalid sessions."
+    },
+    {
+      "id": "SEC-027",
+      "category": "Security",
+      "title": "localStorage settings can be tampered with and trusted without checks",
+      "type": "Security Vulnerability",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Browser Storage / Settings",
+      "description": "User settings are stored and read without strict validation.",
+      "impact": "A malicious or corrupted value can affect the UI or language status.",
+      "stepsToReproduce": [
+        "1. Modify localStorage data.",
+        "2. Reload app.",
+        "3. Check settings behavior."
+      ],
+      "expectedResult": "Settings should be validated and sanitized.",
+      "actualResult": "The app trusts unverified localStorage values.",
+      "evidence": [
+        "src/lib/settings.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because a malicious or corrupted value can affect the ui or language status."
+    },
+    {
+      "id": "SEC-029",
+      "category": "Security",
+      "title": "Rate limiting and abuse prevention are insufficient for AI workloads",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Rate Limit / AI Abuse Control",
+      "description": "AI and content requests can be retried without proper throttling and abuse protection.",
+      "impact": "Attackers can spam heavy requests and degrade the service.",
+      "stepsToReproduce": [
+        "1. Trigger repeated analysis calls.",
+        "2. Observe backend behavior.",
+        "3. Review retry pattern."
+      ],
+      "expectedResult": "The system should enforce throttling and rate limits.",
+      "actualResult": "Rate limiting remains weak.",
+      "evidence": [
+        "src/lib/analyzeText.ts",
+        "supabase/functions/analyze-text/index.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because attackers can spam heavy requests and degrade the service."
+    },
+    {
+      "id": "SEC-030",
+      "category": "Security",
+      "title": "Media and file validation is incomplete for attachment flows",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "File Upload / Media Validation",
+      "description": "Large or malformed content is only partially validated.",
+      "impact": "Attackers can trigger denial-of-service or resource failures.",
+      "stepsToReproduce": [
+        "1. Send oversized file.",
+        "2. Send malformed media file.",
+        "3. Observe validation path."
+      ],
+      "expectedResult": "Files should be restricted and sanitized.",
+      "actualResult": "Validation remains incomplete.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because attackers can trigger denial-of-service or resource failures."
+    },
+    {
+      "id": "SEC-031",
+      "category": "Security",
+      "title": "Authorization and forbidden responses are not correctly classified",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Error Handling / Access Control",
+      "description": "Error paths between unauthorized and forbidden cases are ambiguous.",
+      "impact": "Users may get misleading status and permission messages.",
+      "stepsToReproduce": [
+        "1. Test unauthorized access.",
+        "2. Test forbidden access.",
+        "3. Review response handling."
+      ],
+      "expectedResult": "Unauthorized and forbidden conditions should map clearly to results.",
+      "actualResult": "Error classification is inconsistent.",
+      "evidence": [
+        "src/lib/analyzeText.ts",
+        "supabase/functions/generate-podcast/index.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may get misleading status and permission messages."
+    },
+    {
+      "id": "SEC-032",
+      "category": "Security",
+      "title": "Markdown and HTML content injection is still a risk",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Content Rendering / Markdown",
+      "description": "Generated content can still be rendered unsafely.",
+      "impact": "Content injection can manipulate pages or mislead users.",
+      "stepsToReproduce": [
+        "1. Send malicious markdown.",
+        "2. Render in UI.",
+        "3. Observe unsafe output."
+      ],
+      "expectedResult": "Rendering should sanitize and filter malicious content.",
+      "actualResult": "Unsafe content may still appear.",
+      "evidence": [
+        "src/components/MarkdownRenderer.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because content injection can manipulate pages or mislead users."
+    },
+    {
+      "id": "SEC-033",
+      "category": "Security",
+      "title": "Dependency and supply-chain exposure remains significant",
+      "type": "Security Vulnerability",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Dependency Management / Supply Chain",
+      "description": "The project has a broad dependency surface with limited hardening evidence.",
+      "impact": "A compromised dependency could affect the application.",
+      "stepsToReproduce": [
+        "1. Review package manifest.",
+        "2. Check dependency hygiene.",
+        "3. Assess exposure risk."
+      ],
+      "expectedResult": "The project should minimize and monitor risk surface.",
+      "actualResult": "The dependency footprint remains broad.",
+      "evidence": [
+        "package.json"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because a compromised dependency could affect the application."
+    },
+    {
+      "id": "SEC-035",
+      "category": "Security",
+      "title": "Sensitive data exposure and logs are not sufficiently protected",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Logging / Sensitive Data Handling",
+      "description": "User and error details may be logged or exposed too broadly.",
+      "impact": "Sensitive user details could be shown to unintended parties.",
+      "stepsToReproduce": [
+        "1. Trigger auth and API errors.",
+        "2. Review logs and UI messages.",
+        "3. Inspect exposure."
+      ],
+      "expectedResult": "The app should minimize sensitive data exposure.",
+      "actualResult": "Sensitive details can leak through logs and messages.",
+      "evidence": [
+        "src/lib/analyzeText.ts",
+        "src/components/ChatPanel.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because sensitive user details could be shown to unintended parties."
+    },
+    {
+      "id": "SEC-036",
+      "category": "Security",
+      "title": "Password and credential handling standards are not strongly enforced",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Authentication / Credential Handling",
+      "description": "Credentials are not strongly protected by policy enforcement in the current UI flow.",
+      "impact": "Users may rely on weak or unvalidated stored credentials.",
+      "stepsToReproduce": [
+        "1. Review auth form validation.",
+        "2. Check credential handling in flow.",
+        "3. Inspect stored state."
+      ],
+      "expectedResult": "The auth flow should enforce strong input and secure handling.",
+      "actualResult": "Credentials are not robustly governed.",
+      "evidence": [
+        "src/pages/Auth.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may rely on weak or unvalidated stored credentials."
+    },
+    {
+      "id": "SEC-037",
+      "category": "Security",
+      "title": "External API trust boundaries are not strongly validated",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "External API Integration / Trust Boundary",
+      "description": "The app depends on AI and media services without strict validation rules for remote response and origin trust.",
+      "impact": "Malicious or malformed service responses could redirect or destabilize flows.",
+      "stepsToReproduce": [
+        "1. Inspect external API calls.",
+        "2. Simulate malformed response.",
+        "3. Review trust boundary."
+      ],
+      "expectedResult": "The app should validate all external responses and origins.",
+      "actualResult": "Trusted domain and response validation remain weak.",
+      "evidence": [
+        "src/lib/analyzeText.ts",
+        "src/pages/ContentDetail.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because malicious or malformed service responses could redirect or destabilize flows."
+    },
+    {
+      "id": "SEC-038",
+      "category": "Security",
+      "title": "Protected routes and auth gating are not uniformly enforced",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Route Protection / Auth Gating",
+      "description": "Not all protected routes are equally hardened against anonymous access.",
+      "impact": "Unauthorized users may reach areas they should not.",
+      "stepsToReproduce": [
+        "1. Attempt access to protected pages.",
+        "2. Check route-level gating.",
+        "3. Inspect redirects."
+      ],
+      "expectedResult": "Protected pages should require valid session checks.",
+      "actualResult": "Some routes are not enforced consistently.",
+      "evidence": [
+        "src/App.tsx",
+        "src/pages/Dashboard.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because unauthorized users may reach areas they should not."
+    },
+    {
+      "id": "API-040",
+      "category": "API",
+      "title": "Invalid payload rejection is inconsistent",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Endpoint / analyze-text",
+      "description": "The API wrapper does not always reject invalid payloads cleanly.",
+      "impact": "Users may get unclear failures or backend errors.",
+      "stepsToReproduce": [
+        "1. Send empty or malformed body to analyze-text.",
+        "2. Check response code.",
+        "3. Review error handling."
+      ],
+      "expectedResult": "The API should return a clear validation error.",
+      "actualResult": "Invalid payloads are not consistently rejected.",
+      "evidence": [
+        "src/lib/analyzeText.ts",
+        "supabase/functions/analyze-text/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may get unclear failures or backend errors."
+    },
+    {
+      "id": "API-041",
+      "category": "API",
+      "title": "Retry behavior misclassifies some failure types",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Endpoint / Retry Logic",
+      "description": "Some errors are retried even when they are not transient.",
+      "impact": "The app wastes API calls and frustrates users.",
+      "stepsToReproduce": [
+        "1. Trigger 429 and 5xx conditions.",
+        "2. Check retry triggers.",
+        "3. Observe final message."
+      ],
+      "expectedResult": "Retry should only occur for transient errors.",
+      "actualResult": "Retry logic is too broad.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the app wastes api calls and frustrates users."
+    },
+    {
+      "id": "API-043",
+      "category": "API",
+      "title": "Podcast generation timeout and network failure handling remains weak",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Endpoint / generate-podcast",
+      "description": "Network or timeout failures are not handled uniformly.",
+      "impact": "Users can experience hanging or incomplete generation flows.",
+      "stepsToReproduce": [
+        "1. Simulate timeout.",
+        "2. Trigger slow response.",
+        "3. Observe flow."
+      ],
+      "expectedResult": "The platform should recover and show clear guidance.",
+      "actualResult": "Failure handling is weak under slow or failed calls.",
+      "evidence": [
+        "supabase/functions/generate-podcast/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can experience hanging or incomplete generation flows."
+    },
+    {
+      "id": "API-044",
+      "category": "API",
+      "title": "content-chat response schema and payload validation is unstable",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Endpoint / content-chat",
+      "description": "The chat API does not consistently validate payloads and output schema.",
+      "impact": "Parsing errors can break UI and backend trust.",
+      "stepsToReproduce": [
+        "1. Send empty or malformed chat content.",
+        "2. Validate returned schema.",
+        "3. Observe UI behavior."
+      ],
+      "expectedResult": "The API should validate schema and respond clearly.",
+      "actualResult": "Schema validation is inconsistent.",
+      "evidence": [
+        "supabase/functions/content-chat/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because parsing errors can break ui and backend trust."
+    },
+    {
+      "id": "API-046",
+      "category": "API",
+      "title": "CORS and Origin validation requires hardening",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "API Security / CORS",
+      "description": "Origin validation should be stronger to prevent unsafe cross-origin requests.",
+      "impact": "A malicious website may attempt to abuse the backend.",
+      "stepsToReproduce": [
+        "1. Test cross-origin requests.",
+        "2. Review allowed origins.",
+        "3. Inspect behavior."
+      ],
+      "expectedResult": "Only trusted origins should access the API.",
+      "actualResult": "CORS trust is not sufficiently constrained.",
+      "evidence": [
+        "supabase/functions/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because a malicious website may attempt to abuse the backend."
+    },
+    {
+      "id": "API-047",
+      "category": "API",
+      "title": "Rate limit behavior is inconsistent for auth and anonymous requests",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Rate Limit / Abuse Prevention",
+      "description": "The API does not consistently enforce rate limits across request types.",
+      "impact": "The platform can be abused by repeated requests.",
+      "stepsToReproduce": [
+        "1. Attempt repeated requests.",
+        "2. Compare anonymous versus authenticated.",
+        "3. Check status codes."
+      ],
+      "expectedResult": "The system should throttle abusive traffic.",
+      "actualResult": "Rate limit handling is inconsistent.",
+      "evidence": [
+        "supabase/functions/analyze-text/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the platform can be abused by repeated requests."
+    },
+    {
+      "id": "API-049",
+      "category": "API",
+      "title": "Expired session handling is not robust for protected endpoints",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Protected Endpoint / Session Expiry",
+      "description": "Expired sessions may still retain access or show stale state.",
+      "impact": "Users can see protected content without a valid session.",
+      "stepsToReproduce": [
+        "1. Expire session token.",
+        "2. Request protected endpoint.",
+        "3. Review response."
+      ],
+      "expectedResult": "Expired sessions should force login or deny access.",
+      "actualResult": "The protection flow is weak.",
+      "evidence": [
+        "src/hooks/useAuth.ts",
+        "src/pages/ChatPage.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can see protected content without a valid session."
+    },
+    {
+      "id": "API-051",
+      "category": "API",
+      "title": "HTTP status correctness is inconsistent for create/update/delete flows",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Contract / HTTP Status",
+      "description": "Create/update/delete operations do not always map to accurate HTTP results.",
+      "impact": "The app and client may misinterpret failures.",
+      "stepsToReproduce": [
+        "1. Perform create/update/delete calls.",
+        "2. Inspect status codes.",
+        "3. Review client logic."
+      ],
+      "expectedResult": "The API should clearly distinguish validation and server fault states.",
+      "actualResult": "Status semantics are mixed.",
+      "evidence": [
+        "supabase/functions/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the app and client may misinterpret failures."
+    },
+    {
+      "id": "API-053",
+      "category": "API",
+      "title": "Delete endpoint idempotency and state recovery are weak",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Delete API / Data Cleanup",
+      "description": "Repeated deletion requests and stale state handling are not robust.",
+      "impact": "Users may see incorrect deletion states or orphaned data.",
+      "stepsToReproduce": [
+        "1. Delete the same item twice.",
+        "2. Observe response.",
+        "3. Check UI state."
+      ],
+      "expectedResult": "Delete behavior should be idempotent and predictable.",
+      "actualResult": "The flow is fragile under repeated requests.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may see incorrect deletion states or orphaned data."
+    },
+    {
+      "id": "API-055",
+      "category": "API",
+      "title": "Response caching and stale data policy remain unverified",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Data Freshness / Response Caching",
+      "description": "Repeated API calls can continue to show stale data.",
+      "impact": "Users can work from outdated information.",
+      "stepsToReproduce": [
+        "1. Request same endpoint repeatedly.",
+        "2. Change underlying data.",
+        "3. Validate cache invalidation."
+      ],
+      "expectedResult": "The app should revalidate stale data.",
+      "actualResult": "Caching behavior is not clearly controlled.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can work from outdated information."
+    },
+    {
+      "id": "AI-058",
+      "category": "AI",
+      "title": "Model accuracy is inconsistent for short content with simple factual tasks",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Accuracy / Text Analysis",
+      "description": "The model output can vary in quality for short but nuanced tasks.",
+      "impact": "Users may rely on incomplete or low-quality summaries.",
+      "stepsToReproduce": [
+        "1. Submit concise content.",
+        "2. Review output quality.",
+        "3. Compare with expected result."
+      ],
+      "expectedResult": "The model should maintain consistent quality for short tasks.",
+      "actualResult": "The output quality varies unexpectedly.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may rely on incomplete or low-quality summaries."
+    },
+    {
+      "id": "AI-059",
+      "category": "AI",
+      "title": "Long input truncation degrades model quality and user trust",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Input Limits / Long Content",
+      "description": "Large inputs are truncated without clear guidance or quality safeguards.",
+      "impact": "Users may receive incomplete or misleading output.",
+      "stepsToReproduce": [
+        "1. Submit near-limit input.",
+        "2. Observe truncation and output quality.",
+        "3. Review error handling."
+      ],
+      "expectedResult": "The app should explain limits and maintain output quality.",
+      "actualResult": "Large inputs trigger degradation.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may receive incomplete or misleading output."
+    },
+    {
+      "id": "AI-061",
+      "category": "AI",
+      "title": "Bias and fairness review on educational generation is incomplete",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Fairness / Bias Assessment",
+      "description": "The educational content generator may reflect uneven tone or perspective.",
+      "impact": "This can reduce trust in learning materials and mislead users.",
+      "stepsToReproduce": [
+        "1. Submit content across groups and contexts.",
+        "2. Compare outputs.",
+        "3. Review tone and fairness."
+      ],
+      "expectedResult": "The model should produce balanced responses.",
+      "actualResult": "Bias checks are incomplete.",
+      "evidence": [
+        "supabase/functions/analyze-text/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because this can reduce trust in learning materials and mislead users."
+    },
+    {
+      "id": "AI-062",
+      "category": "AI",
+      "title": "Hallucination risk remains on factual prompts",
+      "type": "Bug",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "AI Reliability / Factual Grounding",
+      "description": "Generated responses may include unsupported or fabricated claims.",
+      "impact": "Users may trust incorrect educational output.",
+      "stepsToReproduce": [
+        "1. Submit factual request.",
+        "2. Compare with known facts.",
+        "3. Review unsupported claims."
+      ],
+      "expectedResult": "The response should stick to source content.",
+      "actualResult": "Hallucination risk remains.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may trust incorrect educational output."
+    },
+    {
+      "id": "AI-063",
+      "category": "AI",
+      "title": "Context retention is not stable across multi-turn interactions",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Conversation / Context Memory",
+      "description": "Multi-turn chat can lose or distort conversation context.",
+      "impact": "Users may get inconsistent responses across turns.",
+      "stepsToReproduce": [
+        "1. Ask a follow-up after initial prompt.",
+        "2. Compare context continuity.",
+        "3. Observe output drift."
+      ],
+      "expectedResult": "The app should retain relevant conversation context.",
+      "actualResult": "Context continuity is weak.",
+      "evidence": [
+        "supabase/functions/content-chat/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may get inconsistent responses across turns."
+    },
+    {
+      "id": "AI-065",
+      "category": "AI",
+      "title": "Prompt length and token overflow behavior remains risky",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Prompt Limits / Token Management",
+      "description": "Near-limit prompts can degrade output quality or fail unpredictably.",
+      "impact": "Users may unexpectedly receive truncated or unusable results.",
+      "stepsToReproduce": [
+        "1. Submit prompts near token limits.",
+        "2. Observe output.",
+        "3. Check guidance."
+      ],
+      "expectedResult": "The app should handle limits predictably.",
+      "actualResult": "Prompt handling still breaks down under heavy loads.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may unexpectedly receive truncated or unusable results."
+    },
+    {
+      "id": "AI-066",
+      "category": "AI",
+      "title": "Structured output validation for generated study materials is unreliable",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Output Schema / Structured Response",
+      "description": "Generated outputs do not always conform to expected data structure.",
+      "impact": "Downstream parsing and UI rendering may fail.",
+      "stepsToReproduce": [
+        "1. Generate structured response.",
+        "2. Validate required keys.",
+        "3. Check parsing behavior."
+      ],
+      "expectedResult": "The output structure should be consistent.",
+      "actualResult": "The schema is not always reliable.",
+      "evidence": [
+        "supabase/functions/analyze-text/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because downstream parsing and ui rendering may fail."
+    },
+    {
+      "id": "AI-067",
+      "category": "AI",
+      "title": "Sensitive user content is not sufficiently protected in AI prompts",
+      "type": "Security Vulnerability",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "AI Privacy / Data Handling",
+      "description": "Private or sensitive content may be processed without strong minimization or redaction.",
+      "impact": "Users may lose privacy confidence in the system.",
+      "stepsToReproduce": [
+        "1. Submit sensitive notes.",
+        "2. Review how prompts are formed.",
+        "3. Check storage or logs."
+      ],
+      "expectedResult": "Sensitive data should be minimized and protected.",
+      "actualResult": "Privacy controls are not sufficiently strong.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose privacy confidence in the system."
+    },
+    {
+      "id": "AI-068",
+      "category": "AI",
+      "title": "Fallback behavior for AI outage is incomplete",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Service Availability / Fallback Handling",
+      "description": "The system has retry logic but not fully stable fallback messaging or recovery.",
+      "impact": "Users may feel stuck when the AI service is unavailable.",
+      "stepsToReproduce": [
+        "1. Simulate service outage.",
+        "2. Trigger the generation flow.",
+        "3. Observe fallback and recovery."
+      ],
+      "expectedResult": "The app should show meaningful fallback guidance.",
+      "actualResult": "Fallback or recovery remains weak.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may feel stuck when the ai service is unavailable."
+    },
+    {
+      "id": "AI-070",
+      "category": "AI",
+      "title": "Determinism and repeatability of AI summary generation is weak",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Determinism / Output Consistency",
+      "description": "The same input can yield materially different outputs.",
+      "impact": "Users may doubt the quality and reliability of the system.",
+      "stepsToReproduce": [
+        "1. Submit same content twice.",
+        "2. Compare outputs.",
+        "3. Review variance."
+      ],
+      "expectedResult": "The output should be sufficiently consistent.",
+      "actualResult": "Responses vary beyond acceptable tolerance.",
+      "evidence": [
+        "supabase/functions/analyze-text/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may doubt the quality and reliability of the system."
+    },
+    {
+      "id": "AI-071",
+      "category": "AI",
+      "title": "Tool and external system boundaries for AI workflow need stronger control",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "AI Tool Access / Trust Boundary",
+      "description": "AI-driven workflows may interact with external systems without strong user-trust control.",
+      "impact": "Unchecked tool access can create unsafe outcomes.",
+      "stepsToReproduce": [
+        "1. Review external tools and service access.",
+        "2. Simulate tool invocation.",
+        "3. Inspect boundaries."
+      ],
+      "expectedResult": "Only intended and validated tools should be used.",
+      "actualResult": "Boundary controls are not strong enough.",
+      "evidence": [
+        "src/lib/mcp/index.ts",
+        "src/lib/mcp/tools/**"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because unchecked tool access can create unsafe outcomes."
+    },
+    {
+      "id": "AI-072",
+      "category": "AI",
+      "title": "AI output sanitization and UI-safe rendering remains risky",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "AI Output Rendering / Sanitization",
+      "description": "The generated answer may still contain dangerous markup or misleading structure.",
+      "impact": "Users may encounter unsafe content or invalid UI state.",
+      "stepsToReproduce": [
+        "1. Submit markdown-heavy or malicious output.",
+        "2. Render in app UI.",
+        "3. Observe result."
+      ],
+      "expectedResult": "Outputs should be sanitized before display.",
+      "actualResult": "Unsafe rendering risk remains.",
+      "evidence": [
+        "src/components/MarkdownRenderer.tsx"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may encounter unsafe content or invalid ui state."
+    },
+    {
+      "id": "DB-074",
+      "category": "DB",
+      "title": "User profile creation and update logic is inconsistent",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Profile Management",
+      "description": "Profile records can be created or updated inconsistently across auth changes.",
+      "impact": "Users can have missing or invalid account data.",
+      "stepsToReproduce": [
+        "1. Create profile.",
+        "2. Update profile data.",
+        "3. Check records."
+      ],
+      "expectedResult": "Profile creation should be consistent and validated.",
+      "actualResult": "Profile data integrity is weak.",
+      "evidence": [
+        "supabase/migrations/**",
+        "src/hooks/useAuth.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can have missing or invalid account data."
+    },
+    {
+      "id": "DB-075",
+      "category": "DB",
+      "title": "Content-to-user relationship integrity is weak",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / User-Content Mapping",
+      "description": "The relationship between user records and content records is not fully guaranteed.",
+      "impact": "Users may access or manipulate content incorrectly.",
+      "stepsToReproduce": [
+        "1. Create content as a user.",
+        "2. Query by user ID.",
+        "3. Compare data mapping."
+      ],
+      "expectedResult": "Content should belong to the correct user only.",
+      "actualResult": "Mapping integrity is inconsistent.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may access or manipulate content incorrectly."
+    },
+    {
+      "id": "DB-077",
+      "category": "DB",
+      "title": "Null handling and default values for profile fields are not fully controlled",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Data Validation",
+      "description": "Optional profile fields can produce null or undefined states without proper defaults.",
+      "impact": "The app may break when users have incomplete records.",
+      "stepsToReproduce": [
+        "1. Insert missing optional fields.",
+        "2. Query and render profile.",
+        "3. Check behavior."
+      ],
+      "expectedResult": "The system should normalize null values.",
+      "actualResult": "Null handling remains weak.",
+      "evidence": [
+        "supabase/migrations/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the app may break when users have incomplete records."
+    },
+    {
+      "id": "DB-078",
+      "category": "DB",
+      "title": "Deletion and referential integrity are incomplete",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Cleanup and Referential Integrity",
+      "description": "Removing a content item or related records may leave orphaned data behind.",
+      "impact": "The system can accumulate stale or inconsistent records.",
+      "stepsToReproduce": [
+        "1. Delete a content record.",
+        "2. Check related tables.",
+        "3. Validate cleanup."
+      ],
+      "expectedResult": "The system should clean dependent data reliably.",
+      "actualResult": "Referential integrity is not fully ensured.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the system can accumulate stale or inconsistent records."
+    },
+    {
+      "id": "DB-080",
+      "category": "DB",
+      "title": "Large dataset handling is not stable at scale",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Performance Under Load",
+      "description": "Large inserts and query volumes may produce slower or unstable behavior.",
+      "impact": "Users may experience delayed data loads and poor reliability.",
+      "stepsToReproduce": [
+        "1. Insert large batch.",
+        "2. Query content list.",
+        "3. Observe performance."
+      ],
+      "expectedResult": "The app should scale with larger datasets.",
+      "actualResult": "Large data handling remains risky.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may experience delayed data loads and poor reliability."
+    },
+    {
+      "id": "DB-081",
+      "category": "DB",
+      "title": "Transaction rollback and partial-failure recovery are not proven",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Transactions",
+      "description": "Transactional safety is not fully verified for multi-step writes.",
+      "impact": "Partial writes can leave inconsistent records.",
+      "stepsToReproduce": [
+        "1. Trigger a write failure mid-process.",
+        "2. Check persisted data.",
+        "3. Observe rollback results."
+      ],
+      "expectedResult": "The system should enforce atomicity.",
+      "actualResult": "Rollback behavior is unverified.",
+      "evidence": [
+        "supabase/functions/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because partial writes can leave inconsistent records."
+    },
+    {
+      "id": "DB-083",
+      "category": "DB",
+      "title": "Audit trail or traceability for user account changes is insufficient",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Auditability",
+      "description": "User and content lifecycle changes are not clearly traceable.",
+      "impact": "Compliance and support teams may not be able to reconstruct events.",
+      "stepsToReproduce": [
+        "1. Review account change paths.",
+        "2. Assess traceability.",
+        "3. Inspect required logs."
+      ],
+      "expectedResult": "The system should record key state changes.",
+      "actualResult": "Auditability is insufficient.",
+      "evidence": [
+        "supabase/migrations/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because compliance and support teams may not be able to reconstruct events."
+    },
+    {
+      "id": "DB-084",
+      "category": "DB",
+      "title": "Retention and archival policies for generated content are not clear",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Database / Data Retention",
+      "description": "Generated content and media may not have a defined retention lifecycle.",
+      "impact": "The business may accumulate unnecessary data and risk privacy issues.",
+      "stepsToReproduce": [
+        "1. Review generated content retention paths.",
+        "2. Check storage lifecycle.",
+        "3. Validate cleanup."
+      ],
+      "expectedResult": "The system should define retention and cleanup rules.",
+      "actualResult": "Retention policy is unclear.",
+      "evidence": [
+        "supabase/functions/generate-podcast/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the business may accumulate unnecessary data and risk privacy issues."
+    },
+    {
+      "id": "DB-086",
+      "category": "DB",
+      "title": "Concurrent multi-user updates can cause data integrity issues",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Database / Concurrency",
+      "description": "The system could suffer lost updates or stale writes under concurrent access.",
+      "impact": "Users may overwrite each other’s data or see inconsistent records.",
+      "stepsToReproduce": [
+        "1. Simulate concurrent updates.",
+        "2. Check final state.",
+        "3. Validate integrity."
+      ],
+      "expectedResult": "The system should handle concurrent updates safely.",
+      "actualResult": "Concurrency controls are not validated.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may overwrite each other’s data or see inconsistent records."
+    },
+    {
+      "id": "DB-087",
+      "category": "DB",
+      "title": "Sensitive data classification and access control review is incomplete",
+      "type": "Security Vulnerability",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Database / Data Classification",
+      "description": "The project stores sensitive educational and user-generated content without enough access-control evidence.",
+      "impact": "User trust and privacy can be harmed if data is improperly exposed.",
+      "stepsToReproduce": [
+        "1. Review stored content categories.",
+        "2. Inspect access controls.",
+        "3. Evaluate sensitivity."
+      ],
+      "expectedResult": "Sensitive content should have stricter access controls.",
+      "actualResult": "Data classification controls are insufficient.",
+      "evidence": [
+        "supabase/functions/**"
+      ],
+      "issueType": "Security Vulnerability",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because user trust and privacy can be harmed if data is improperly exposed."
+    },
+    {
+      "id": "HW-089",
+      "category": "Hardware/Integration",
+      "title": "Audio output device fallback is unreliable",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Audio Device Integration / Playback",
+      "description": "Audio playback can fail when output devices are absent or change.",
+      "impact": "Users may not hear generated audio or may see confusing behavior.",
+      "stepsToReproduce": [
+        "1. Change output device.",
+        "2. Trigger playback.",
+        "3. Observe fallback behavior."
+      ],
+      "expectedResult": "The app should degrade gracefully if audio device is unavailable.",
+      "actualResult": "Audio fallback handling is weak.",
+      "evidence": [
+        "src/components/PodcastPlayer.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may not hear generated audio or may see confusing behavior."
+    },
+    {
+      "id": "HW-092",
+      "category": "Hardware/Integration",
+      "title": "External service protocol reliability is not fully resilient",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "External Service Integration / Network Reliability",
+      "description": "The system relies on remote services without robust resilience and recovery.",
+      "impact": "Users may lose access to AI or podcast generation during brief outages.",
+      "stepsToReproduce": [
+        "1. Simulate network drops.",
+        "2. Trigger external generation.",
+        "3. Monitor behavior."
+      ],
+      "expectedResult": "The system should recover gracefully from external service interruptions.",
+      "actualResult": "Transport resilience remains weak.",
+      "evidence": [
+        "supabase/functions/**",
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose access to ai or podcast generation during brief outages."
+    },
+    {
+      "id": "HW-094",
+      "category": "Hardware/Integration",
+      "title": "API-to-UI communication is unstable under latency spikes",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Frontend Connectivity / UI State",
+      "description": "Under latency the UI may remain stuck or stale.",
+      "impact": "Users may think the application has crashed.",
+      "stepsToReproduce": [
+        "1. Simulate network delay.",
+        "2. Trigger content load.",
+        "3. Observe UI state."
+      ],
+      "expectedResult": "The UI should show loading and recovery states clearly.",
+      "actualResult": "Latency handling is weak.",
+      "evidence": [
+        "src/components/ChatPanel.tsx",
+        "src/pages/ContentDetail.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may think the application has crashed."
+    },
+    {
+      "id": "HW-095",
+      "category": "Hardware/Integration",
+      "title": "OAuth provider compatibility is not fully hardened",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "OAuth Provider / External Identity Integration",
+      "description": "The app depends on external identity providers and may fail under provider-specific edge cases.",
+      "impact": "Users may get stuck in sign-in or consent flows.",
+      "stepsToReproduce": [
+        "1. Trigger OAuth consent flow.",
+        "2. Vary provider response shape.",
+        "3. Observe redirect handling."
+      ],
+      "expectedResult": "The app should support provider-specific variations safely.",
+      "actualResult": "Provider compatibility is not fully reliable.",
+      "evidence": [
+        "src/pages/OAuthConsent.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may get stuck in sign-in or consent flows."
+    },
+    {
+      "id": "HW-097",
+      "category": "Hardware/Integration",
+      "title": "Background tab and app state resilience is weak",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Browser State / Background Activity",
+      "description": "The app may behave unpredictably when tabs are backgrounded or resumed.",
+      "impact": "Users may lose work or see stale results.",
+      "stepsToReproduce": [
+        "1. Switch tabs during generation.",
+        "2. Resume app.",
+        "3. Observe state."
+      ],
+      "expectedResult": "The app should resume predictably.",
+      "actualResult": "Background resilience is under-validated.",
+      "evidence": [
+        "src/components/PodcastPlayer.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose work or see stale results."
+    },
+    {
+      "id": "HW-098",
+      "category": "Hardware/Integration",
+      "title": "Connection interruption recovery is incomplete",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Network Recovery / Offline State",
+      "description": "The app does not fully recover when connection drops during requests.",
+      "impact": "Users may see no clear path to continue.",
+      "stepsToReproduce": [
+        "1. Drop network mid-request.",
+        "2. Resume connection.",
+        "3. Observe state."
+      ],
+      "expectedResult": "The app should recover or retry gracefully.",
+      "actualResult": "Recovery is inconsistent.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may see no clear path to continue."
+    },
+    {
+      "id": "HW-099",
+      "category": "Hardware/Integration",
+      "title": "End-to-end pipeline between frontend, AI, and Supabase remains fragile",
+      "type": "Bug",
+      "severity": "Critical",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Integration Pipeline / End-to-End Flow",
+      "description": "Multiple external systems are involved, and partial failures can break the entire flow.",
+      "impact": "Users may lose generated content or see inconsistent states.",
+      "stepsToReproduce": [
+        "1. Trigger full workflow.",
+        "2. Introduce partial failure.",
+        "3. Observe results."
+      ],
+      "expectedResult": "The full pipeline should remain coherent under partial failures.",
+      "actualResult": "Pipeline resilience is weak.",
+      "evidence": [
+        "src/pages/ContentDetail.tsx",
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose generated content or see inconsistent states."
+    },
+    {
+      "id": "PERF-101",
+      "category": "Performance",
+      "title": "Large content rendering slows the interface significantly",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Frontend Performance / Large Data Rendering",
+      "description": "The app becomes sluggish when content lists or pages contain large amounts of data.",
+      "impact": "Users may experience delay, lag, or poor responsiveness.",
+      "stepsToReproduce": [
+        "1. Load large content set.",
+        "2. Open detail pages.",
+        "3. Observe render stability."
+      ],
+      "expectedResult": "The app should remain responsive even with large content.",
+      "actualResult": "Rendering time and responsiveness degrade.",
+      "evidence": [
+        "src/pages/Library.tsx",
+        "src/pages/ContentDetail.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may experience delay, lag, or poor responsiveness."
+    },
+    {
+      "id": "PERF-102",
+      "category": "Performance",
+      "title": "Memory usage grows during repeated AI and audio workflows",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Memory / Repeated Heavy Workflows",
+      "description": "Repeated generation tasks can increase memory usage over time.",
+      "impact": "The app may become unstable during repeated use.",
+      "stepsToReproduce": [
+        "1. Repeat generation multiple times.",
+        "2. Observe memory and stability.",
+        "3. Monitor browser health."
+      ],
+      "expectedResult": "The app should manage memory effectively.",
+      "actualResult": "Memory grows and can degrade runtime stability.",
+      "evidence": [
+        "src/utils/ffmpegMix.ts",
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the app may become unstable during repeated use."
+    },
+    {
+      "id": "PERF-103",
+      "category": "Performance",
+      "title": "Knowledge Map operations can create CPU spikes and jank",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Performance / Visualization Rendering",
+      "description": "The graph and node-intensive UI can be slow under update loads.",
+      "impact": "Users may see visible lag during map interaction.",
+      "stepsToReproduce": [
+        "1. Open large graph.",
+        "2. Move or update nodes.",
+        "3. Observe smoothness."
+      ],
+      "expectedResult": "The app should remain responsive.",
+      "actualResult": "CPU spikes create visual lag.",
+      "evidence": [
+        "src/components/KnowledgeMap/KnowledgeMap.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may see visible lag during map interaction."
+    },
+    {
+      "id": "PERF-104",
+      "category": "Performance",
+      "title": "Audio and media processing is resource-heavy under load",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Media Processing / Performance",
+      "description": "Large media processing can take too long or fail.",
+      "impact": "Users may feel the product is unreliable during content generation.",
+      "stepsToReproduce": [
+        "1. Process larger audio payloads.",
+        "2. Measure output time.",
+        "3. Observe failure or timeout."
+      ],
+      "expectedResult": "The system should keep processing times reasonable.",
+      "actualResult": "Media processing is too resource-intensive.",
+      "evidence": [
+        "src/utils/ffmpegMix.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may feel the product is unreliable during content generation."
+    },
+    {
+      "id": "PERF-106",
+      "category": "Performance",
+      "title": "Storage growth from repeated saves and generated outputs is not bounded",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Storage / Browser State Growth",
+      "description": "Repeated generation and page interactions cause state growth.",
+      "impact": "Users may face capacity or slowdowns over time.",
+      "stepsToReproduce": [
+        "1. Repeat generation.",
+        "2. Inspect browser storage.",
+        "3. Observe data growth."
+      ],
+      "expectedResult": "Storage should remain bounded or cleaned up.",
+      "actualResult": "Growth is not properly controlled.",
+      "evidence": [
+        "src/lib/settings.ts",
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may face capacity or slowdowns over time."
+    },
+    {
+      "id": "PERF-107",
+      "category": "Performance",
+      "title": "UI freezes under multiple concurrent tasks",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Frontend Responsiveness / Concurrency",
+      "description": "Parallel tasks and updates can freeze the interface.",
+      "impact": "Users cannot continue interacting with the product.",
+      "stepsToReproduce": [
+        "1. Trigger several tasks at once.",
+        "2. Observe UI responsiveness.",
+        "3. Check freeze behavior."
+      ],
+      "expectedResult": "The app should preserve responsiveness.",
+      "actualResult": "The UI can freeze under moderate simultaneous load.",
+      "evidence": [
+        "src/components/ChatPanel.tsx",
+        "src/pages/ContentDetail.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users cannot continue interacting with the product."
+    },
+    {
+      "id": "PERF-108",
+      "category": "Performance",
+      "title": "Search and filter performance degrades with larger content sets",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Search / Filter Performance",
+      "description": "Search operations become slower as more content is added.",
+      "impact": "Users may experience slow queries and stale result sets.",
+      "stepsToReproduce": [
+        "1. Load large content repo.",
+        "2. Search and filter records.",
+        "3. Observe timing."
+      ],
+      "expectedResult": "The system should stay responsive as the data set grows.",
+      "actualResult": "Performance degrades under volume.",
+      "evidence": [
+        "src/pages/Library.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may experience slow queries and stale result sets."
+    },
+    {
+      "id": "PERF-109",
+      "category": "Performance",
+      "title": "Memory retention after navigation and unmount is not fully verified",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Frontend Memory Cleanup / Navigation",
+      "description": "Page transitions may leave references alive after unmounting.",
+      "impact": "Memory can accumulate and harm long sessions.",
+      "stepsToReproduce": [
+        "1. Navigate between pages repeatedly.",
+        "2. Check memory profile.",
+        "3. Observe cleanup."
+      ],
+      "expectedResult": "The app should clean references on unmount.",
+      "actualResult": "Memory cleanup remains weak.",
+      "evidence": [
+        "src/components/KnowledgeMap/KnowledgeMap.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because memory can accumulate and harm long sessions."
+    },
+    {
+      "id": "PERF-110",
+      "category": "Performance",
+      "title": "Token and content size limits are not explained clearly during heavy AI use",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "AI Performance / User Guidance",
+      "description": "Large prompts produce unstable or partial results without enough guidance.",
+      "impact": "Users may be confused by failures and wasted effort.",
+      "stepsToReproduce": [
+        "1. Send large prompt.",
+        "2. Observe result and message.",
+        "3. Check explanation quality."
+      ],
+      "expectedResult": "The app should guide users on limits and retries.",
+      "actualResult": "Guidance remains weak.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may be confused by failures and wasted effort."
+    },
+    {
+      "id": "PERF-111",
+      "category": "Performance",
+      "title": "Retry and backend coordination degrade responsiveness under latency stress",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "API Performance / Retry Coordination",
+      "description": "Retrials under latency stress can create a poor user experience.",
+      "impact": "Users may wait too long and see stale states.",
+      "stepsToReproduce": [
+        "1. Simulate delay and retries.",
+        "2. Observe network and UI states.",
+        "3. Check responsiveness."
+      ],
+      "expectedResult": "The app should degrade gracefully under latency.",
+      "actualResult": "Latency and retries reduce responsiveness.",
+      "evidence": [
+        "src/lib/analyzeText.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may wait too long and see stale states."
+    },
+    {
+      "id": "REG-113",
+      "category": "Regression",
+      "title": "Auth regression after session changes and refresh cycles",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Auth Regression / Session Stability",
+      "description": "The authentication flow remains unstable through repeated logins and re-auth.",
+      "impact": "Users can get locked out or see stale login state.",
+      "stepsToReproduce": [
+        "1. Login.",
+        "2. Logout and login again.",
+        "3. Verify session continuity."
+      ],
+      "expectedResult": "The system should produce stable auth state each time.",
+      "actualResult": "Auth regression remains active.",
+      "evidence": [
+        "src/hooks/useAuth.ts",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can get locked out or see stale login state."
+    },
+    {
+      "id": "REG-114",
+      "category": "Regression",
+      "title": "Content creation and deletion regression is still present",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Content Regression / CRUD Flow",
+      "description": "Create and delete flows can leave stale data and mismatched states.",
+      "impact": "Users can lose trust in content management features.",
+      "stepsToReproduce": [
+        "1. Create a content item.",
+        "2. Delete it.",
+        "3. Verify cleanup and UI state."
+      ],
+      "expectedResult": "Create and delete should both behave predictably.",
+      "actualResult": "Some state cleanup remains inconsistent.",
+      "evidence": [
+        "src/hooks/useContent.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users can lose trust in content management features."
+    },
+    {
+      "id": "REG-115",
+      "category": "Regression",
+      "title": "Settings and language persistence regression after reload",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Settings Regression / Persistence",
+      "description": "Language and theme settings can revert or mismatch after refresh.",
+      "impact": "Users may experience inconsistent UI preferences.",
+      "stepsToReproduce": [
+        "1. Change settings.",
+        "2. Reload page.",
+        "3. Check values and UI."
+      ],
+      "expectedResult": "Preferences should remain stable after reload.",
+      "actualResult": "Settings persistence is not fully consistent.",
+      "evidence": [
+        "src/lib/settings.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may experience inconsistent ui preferences."
+    },
+    {
+      "id": "REG-116",
+      "category": "Regression",
+      "title": "Billing and usage limit state can regress under auth transitions",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Billing Regression / Auth State",
+      "description": "Billing state can drift when user auth changes.",
+      "impact": "Users may see outdated pricing or usage status.",
+      "stepsToReproduce": [
+        "1. Trigger auth change.",
+        "2. Reload Billing page.",
+        "3. Observe plan state."
+      ],
+      "expectedResult": "Billing state should always reflect the active account.",
+      "actualResult": "State can regress under auth transitions.",
+      "evidence": [
+        "src/pages/Billing.tsx"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may see outdated pricing or usage status."
+    },
+    {
+      "id": "REG-117",
+      "category": "Regression",
+      "title": "Content generation regression under partial external failure",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "AI Generation Regression / External Failures",
+      "description": "Generation fails or becomes partially broken when external services are degraded.",
+      "impact": "Users may lose outputs or get unclear error states.",
+      "stepsToReproduce": [
+        "1. Trigger generation.",
+        "2. Simulate partial external failure.",
+        "3. Observe result."
+      ],
+      "expectedResult": "The app should fail gracefully and preserve UX.",
+      "actualResult": "Generation flow is vulnerable to service instability.",
+      "evidence": [
+        "src/lib/analyzeText.ts",
+        "supabase/functions/generate-podcast/index.ts"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may lose outputs or get unclear error states."
+    },
+    {
+      "id": "REG-119",
+      "category": "Regression",
+      "title": "Security and quality regression remains across updates",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "High",
+      "status": "Failed",
+      "component": "Security Regression / Review Baseline",
+      "description": "The security and quality baseline does not improve after updates.",
+      "impact": "The risk profile remains elevated.",
+      "stepsToReproduce": [
+        "1. Review lint and build status.",
+        "2. Cross-check with previous findings.",
+        "3. Validate patch coverage."
+      ],
+      "expectedResult": "The project should trend toward stronger security.",
+      "actualResult": "Regression review reveals continuing issues.",
+      "evidence": [
+        "package.json",
+        "eslint.config.js",
+        "src/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the risk profile remains elevated."
+    },
+    {
+      "id": "REG-120",
+      "category": "Regression",
+      "title": "Accessibility and keyboard flow regression continues to exist",
+      "type": "Bug",
+      "severity": "Medium",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Accessibility / Keyboard Navigation",
+      "description": "Keyboard flows and focus management are not consistently validated.",
+      "impact": "Users relying on keyboard navigation may struggle.",
+      "stepsToReproduce": [
+        "1. Navigate using keyboard only.",
+        "2. Open dialogs.",
+        "3. Check focus and verification."
+      ],
+      "expectedResult": "Core flows should remain keyboard-accessible.",
+      "actualResult": "Accessibility regression remains unresolved.",
+      "evidence": [
+        "src/components/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users relying on keyboard navigation may struggle."
+    },
+    {
+      "id": "REG-121",
+      "category": "Regression",
+      "title": "Stability regression under repeated navigation and reload cycles",
+      "type": "Bug",
+      "severity": "High",
+      "priority": "Medium",
+      "status": "Failed",
+      "component": "Navigation Stability / State Consistency",
+      "description": "Repeated navigation and reloads can leave stale state across screens.",
+      "impact": "Users may see mismatched or stale page data.",
+      "stepsToReproduce": [
+        "1. Navigate across pages repeatedly.",
+        "2. Reload pages.",
+        "3. Confirm state continuity."
+      ],
+      "expectedResult": "The app should remain coherent and state-safe.",
+      "actualResult": "Stability under repeated navigation is weak.",
+      "evidence": [
+        "src/App.tsx",
+        "src/pages/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because users may see mismatched or stale page data."
+    },
+    {
+      "id": "REG-122",
+      "category": "Regression",
+      "title": "Release readiness gate fails against current QA baseline",
+      "type": "Bug",
+      "severity": "Critical",
+      "priority": "Critical",
+      "status": "Failed",
+      "component": "Release Readiness / QA Gate",
+      "description": "The current project fails the production-readiness threshold from both QA and Security view.",
+      "impact": "The business risk is too high for a low-risk release.",
+      "stepsToReproduce": [
+        "1. Review build/lint/security findings.",
+        "2. Compare with release criteria.",
+        "3. Check exit gate."
+      ],
+      "expectedResult": "The project should meet minimum acceptance thresholds.",
+      "actualResult": "Current QA baseline fails release criteria.",
+      "evidence": [
+        "npm run build",
+        "npm run lint",
+        "QA_System_Audit_Report/**"
+      ],
+      "issueType": "Bug",
+      "plainLanguage": "Այս խնդիր affects the user experience and product integrity because the business risk is too high for a low-risk release."
+    }
+  ]
+}

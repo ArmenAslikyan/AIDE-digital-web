@@ -24,7 +24,7 @@ def test_analyze_text_flow_uses_admin_client_for_subscription_and_usage_log(read
         [
             "const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);",
             ".from('subscriptions')",
-            ".select('plan_type, status')",
+            ".select('plan_type, status, expires_at')",
             'supabaseAdmin.from("usage_logs").insert({ user_id: user.id, action_type: "analysis" }).then();',
         ],
     )

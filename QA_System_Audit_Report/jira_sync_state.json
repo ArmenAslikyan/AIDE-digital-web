@@ -1,0 +1,1226 @@
+{
+  "succeeded": [
+    {
+      "id": "F-001",
+      "title": "Առաջին էջի բացման և հիմնական Navigation-ի ստուգում։",
+      "issueKey": "AIDE-125",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-002",
+      "title": "Auth Page-ի բացման ճշգրտությունը և input validation-ը։",
+      "issueKey": "AIDE-126",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-003",
+      "title": "Session persistence-ի ստուգում refresh-ի jälkeen։",
+      "issueKey": "AIDE-127",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-004",
+      "title": "User profile loading և dashboard rendering։",
+      "issueKey": "AIDE-128",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-005",
+      "title": "Library content list rendering and empty state behavior։",
+      "issueKey": "AIDE-129",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-006",
+      "title": "Content Detail page opens correct content and initiates data fetch։",
+      "issueKey": "AIDE-130",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-007",
+      "title": "Chat interaction initializes and sends messages։",
+      "issueKey": "AIDE-131",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-008",
+      "title": "Chat error recovery when backend fails or returns malformed data։",
+      "issueKey": "AIDE-132",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-009",
+      "title": "Flashcards and Quiz pages render and react to user input։",
+      "issueKey": "AIDE-133",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-010",
+      "title": "Study Guide Maker workflow basic path։",
+      "issueKey": "AIDE-134",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-011",
+      "title": "Billing and subscription status retrieval।",
+      "issueKey": "AIDE-135",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-012",
+      "title": "Settings page language and theme persistence։",
+      "issueKey": "AIDE-136",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-013",
+      "title": "OAuth consent page loads and acts on valid authorization request։",
+      "issueKey": "AIDE-137",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-014",
+      "title": "ErrorBoundary catches unexpected render failures։",
+      "issueKey": "AIDE-138",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-015",
+      "title": "Audio generation and media preview workflow։",
+      "issueKey": "AIDE-139",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-016",
+      "title": "Knowledge Map rendering and manipulation։",
+      "issueKey": "AIDE-140",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "F-017",
+      "title": "User deletion and account cleanup flow։",
+      "issueKey": "AIDE-141",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "F-018",
+      "title": "Non-functional usability on mobile viewport։",
+      "issueKey": "AIDE-142",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-019",
+      "title": "OWASP Authentication weakness review for Supabase client configuration։",
+      "issueKey": "AIDE-143",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-020",
+      "title": "SQL Injection risk assessment for Supabase data access layer։",
+      "issueKey": "AIDE-144",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-021",
+      "title": "XSS validation against user-generated content rendering։",
+      "issueKey": "AIDE-145",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-022",
+      "title": "CSRF and state tampering check in OAuth and auth flows։",
+      "issueKey": "AIDE-146",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-023",
+      "title": "Token presence and session expiry validation։",
+      "issueKey": "AIDE-147",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-024",
+      "title": "Authorization bypass check on content access mechanisms։",
+      "issueKey": "AIDE-148",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-025",
+      "title": "Sensitive configuration and secret management review։",
+      "issueKey": "AIDE-149",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-026",
+      "title": "Session fixation and re-authentication risk assessment։",
+      "issueKey": "AIDE-150",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-027",
+      "title": "Browser storage tampering check on user settings and localStorage state։",
+      "issueKey": "AIDE-151",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-028",
+      "title": "Check whether error messages leak internal implementation details։",
+      "issueKey": "AIDE-152",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-029",
+      "title": "Rate limiting and abuse prevention check on AI Analysis endpoint։",
+      "issueKey": "AIDE-153",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "SEC-030",
+      "title": "File upload and media input validation check։",
+      "issueKey": "AIDE-154",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-031",
+      "title": "API error code classification for unauthorized and forbidden responses։",
+      "issueKey": "AIDE-155",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-032",
+      "title": "Content injection risk with Markdown and raw HTML rendering։",
+      "issueKey": "AIDE-156",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-033",
+      "title": "Dependency and external library exposure scan։",
+      "issueKey": "AIDE-157",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-034",
+      "title": "Secret rotation readiness review for Supabase and auth workflows։",
+      "issueKey": "AIDE-158",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-035",
+      "title": "Data minimization review of logs and personally identifiable data exposure։",
+      "issueKey": "AIDE-159",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-036",
+      "title": "Password policy and credential handling check for auth forms։",
+      "issueKey": "AIDE-160",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-037",
+      "title": "External API trust boundary check for AI and audio generation services։",
+      "issueKey": "AIDE-161",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "SEC-038",
+      "title": "Sensitive route and auth gating review for protected pages।",
+      "issueKey": "AIDE-162",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-039",
+      "title": "analyze-text API availability under normal conditions։",
+      "issueKey": "AIDE-163",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-040",
+      "title": "analyze-text API invalid payload rejection։",
+      "issueKey": "AIDE-164",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-041",
+      "title": "analyze-text API retry behavior on 429 and 5xx status codes։",
+      "issueKey": "AIDE-165",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-042",
+      "title": "generate-podcast API success path validation։",
+      "issueKey": "AIDE-166",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-043",
+      "title": "generate-podcast API timeout and network failure handling։",
+      "issueKey": "AIDE-167",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-044",
+      "title": "content-chat API payload validation and response schema integrity։",
+      "issueKey": "AIDE-168",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-045",
+      "title": "audio generation API for invalid file scenario։",
+      "issueKey": "AIDE-169",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-046",
+      "title": "CORS and Origin validation review for external routes։",
+      "issueKey": "AIDE-170",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-047",
+      "title": "API rate limit behavior across authenticated and unauthenticated requests։",
+      "issueKey": "AIDE-171",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-048",
+      "title": "Protected endpoint access check for anonymous users։",
+      "issueKey": "AIDE-172",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-049",
+      "title": "Protected endpoint access check for user with expired session։",
+      "issueKey": "AIDE-173",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-050",
+      "title": "Response compression and payload size verification for large result sets։",
+      "issueKey": "AIDE-174",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-051",
+      "title": "HTTP Status correctness for create/update/delete operations։",
+      "issueKey": "AIDE-175",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-052",
+      "title": "Content fetch endpoint returns expected data model and key fields։",
+      "issueKey": "AIDE-176",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-053",
+      "title": "Content delete endpoint idempotency and confirmation flow։",
+      "issueKey": "AIDE-177",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-054",
+      "title": "Search and lookup API with invalid search text and long query strings։",
+      "issueKey": "AIDE-178",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "API-055",
+      "title": "Response caching and stale data policy test։",
+      "issueKey": "AIDE-179",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "API-056",
+      "title": "API contract consistency across all Edge Functions。",
+      "issueKey": "AIDE-180",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-057",
+      "title": "Prompt injection resistance when user submits adversarial text input։",
+      "issueKey": "AIDE-181",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-058",
+      "title": "Model accuracy on short, simple content extraction tasks։",
+      "issueKey": "AIDE-182",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-059",
+      "title": "Model robustness on long input content and truncation behavior։",
+      "issueKey": "AIDE-183",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-060",
+      "title": "Zero-input and blank-input handling in content analysis tasks։",
+      "issueKey": "AIDE-184",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-061",
+      "title": "Bias and fairness review on study/learning content generation։",
+      "issueKey": "AIDE-185",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-062",
+      "title": "Hallucination detection on factual knowledge generation tasks։",
+      "issueKey": "AIDE-186",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-063",
+      "title": "Context retention in multi-turn chat conversation.",
+      "issueKey": "AIDE-187",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-064",
+      "title": "Invalid language and unsupported character handling։",
+      "issueKey": "AIDE-188",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-065",
+      "title": "Prompt length and token overflow behavior։",
+      "issueKey": "AIDE-189",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-066",
+      "title": "Incorrect output structure validation for generated summaries and study guides։",
+      "issueKey": "AIDE-190",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-067",
+      "title": "Personalization and privacy handling of user content in model prompts։",
+      "issueKey": "AIDE-191",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-068",
+      "title": "Model fallback when external AI service is unavailable։",
+      "issueKey": "AIDE-192",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-069",
+      "title": "Safety check for harmless but ambiguous educational prompts։",
+      "issueKey": "AIDE-193",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "AI-070",
+      "title": "Determinism and repeatability of AI summary generation։",
+      "issueKey": "AIDE-194",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-071",
+      "title": "Tool-calling and external system boundary validation for AI workflows։",
+      "issueKey": "AIDE-195",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "AI-072",
+      "title": "AI response sanitization and UI-safe rendering review։",
+      "issueKey": "AIDE-196",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-073",
+      "title": "Schema existence validation for subscription and profile tables։",
+      "issueKey": "AIDE-197",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "DB-074",
+      "title": "User profile creation and update consistency։",
+      "issueKey": "AIDE-198",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-075",
+      "title": "Relation integrity check between content and user entities։",
+      "issueKey": "AIDE-199",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-076",
+      "title": "Data type validation for content metadata and timestamps։",
+      "issueKey": "AIDE-200",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "DB-077",
+      "title": "Null handling and default values for optional profile fields։",
+      "issueKey": "AIDE-201",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-078",
+      "title": "Data deletion and referential integrity check for content and related records։",
+      "issueKey": "AIDE-202",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-079",
+      "title": "Query performance check for content list retrieval under moderate load։",
+      "issueKey": "AIDE-203",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "DB-080",
+      "title": "Large data set insertion and retrieval stability։",
+      "issueKey": "AIDE-204",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-081",
+      "title": "Transaction rollback and partial failure behavior review։",
+      "issueKey": "AIDE-205",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-082",
+      "title": "Duplicate data prevention for content titles and user records։",
+      "issueKey": "AIDE-206",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "DB-083",
+      "title": "Audit trail and traceability review for account-related changes։",
+      "issueKey": "AIDE-207",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-084",
+      "title": "Data retention and archival policy review for generated content and media。：",
+      "issueKey": "AIDE-208",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-085",
+      "title": "Constraint validation for subscription and billing metadata։",
+      "issueKey": "AIDE-209",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "DB-086",
+      "title": "Data integrity under concurrent access and multi-user scenario။",
+      "issueKey": "AIDE-210",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "DB-087",
+      "title": "Sensitive data classification and access control review for stored content and users։",
+      "issueKey": "AIDE-211",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-088",
+      "title": "Browser speech synthesis compatibility review։",
+      "issueKey": "AIDE-212",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "HW-089",
+      "title": "Audio output device selection and fallback behavior।",
+      "issueKey": "AIDE-213",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-090",
+      "title": "Browser media API and video/audio mixing compatibility on multiple browsers։",
+      "issueKey": "AIDE-214",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "HW-091",
+      "title": "Sensor or hardware signal simulation review (if applicable)։",
+      "issueKey": "AIDE-215",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-092",
+      "title": "External service protocol reliability review for podcast generation and AI APIs։",
+      "issueKey": "AIDE-216",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-093",
+      "title": "Browser local storage and session storage synchronization review։",
+      "issueKey": "AIDE-217",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "HW-094",
+      "title": "API-to-UI communication health during network latency spikes։",
+      "issueKey": "AIDE-218",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-095",
+      "title": "External auth provider compatibility review for Supabase OAuth provider flows։",
+      "issueKey": "AIDE-219",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-096",
+      "title": "Notifier and toast system reliability during external system failures։",
+      "issueKey": "AIDE-220",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "HW-097",
+      "title": "Browser tab visibility and background state resilience review։",
+      "issueKey": "AIDE-221",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-098",
+      "title": "Connection interruption recovery for frontend with backend services։",
+      "issueKey": "AIDE-222",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "HW-099",
+      "title": "End-to-end external integration review for AI content pipeline and Supabase data pipeline։",
+      "issueKey": "AIDE-223",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "PERF-100",
+      "title": "Initial page load and rendering performance under standard conditions։",
+      "issueKey": "AIDE-224",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "PERF-101",
+      "title": "Large content rendering performance review in Library and Detail pages։",
+      "issueKey": "AIDE-225",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-102",
+      "title": "Memory usage during repeated AI analysis and playback cycles։",
+      "issueKey": "AIDE-226",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-103",
+      "title": "CPU usage under complex Knowledge Map rendering and node updates։",
+      "issueKey": "AIDE-227",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-104",
+      "title": "Audio file processing and mixing performance under load։",
+      "issueKey": "AIDE-228",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-105",
+      "title": "API request latency for normal content retrieval and generation flows։",
+      "issueKey": "AIDE-229",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "PERF-106",
+      "title": "Disk and browser storage growth after repeated save and generation cycles։",
+      "issueKey": "AIDE-230",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-107",
+      "title": "UI freeze detection during multiple active tasks and background updates։",
+      "issueKey": "AIDE-231",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-108",
+      "title": "Search and filter responsiveness with large content repositories։",
+      "issueKey": "AIDE-232",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-109",
+      "title": "Memory retention after page transitions and unmounts։",
+      "issueKey": "AIDE-233",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-110",
+      "title": "Token and content size limit handling during heavy AI prompt workloads։",
+      "issueKey": "AIDE-234",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "PERF-111",
+      "title": "Backend and frontend coordination under transient latency and retry situations։",
+      "issueKey": "AIDE-235",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-112",
+      "title": "Core homepage and routing regression after a new feature release։",
+      "issueKey": "AIDE-236",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "REG-113",
+      "title": "Auth regression after profile creation and session changes։",
+      "issueKey": "AIDE-237",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-114",
+      "title": "Content creation and deletion regression review։",
+      "issueKey": "AIDE-238",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-115",
+      "title": "UI regression on Settings and language configuration after page refresh।",
+      "issueKey": "AIDE-239",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-116",
+      "title": "Billing and usage limit regression under changed auth state։",
+      "issueKey": "AIDE-240",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-117",
+      "title": "Content generation regression when AI or media service response varies।",
+      "issueKey": "AIDE-241",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-118",
+      "title": "Browser compatibility regression across common modern browsers։",
+      "issueKey": "AIDE-242",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "Done",
+      "retestResult": "passed-after-remediation"
+    },
+    {
+      "id": "REG-119",
+      "title": "Security regression check after dependency or configuration updates։",
+      "issueKey": "AIDE-243",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-120",
+      "title": "Accessibility regression and keyboard flow testing։",
+      "issueKey": "AIDE-244",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-121",
+      "title": "Stability regression under repeated navigation and data reloads։",
+      "issueKey": "AIDE-245",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "previousTargetStatus": "To Do",
+      "retestResult": "passed-after-remediation",
+      "transition": "updated"
+    },
+    {
+      "id": "REG-122",
+      "title": "Final production-readiness gate check against current QA baseline։",
+      "issueKey": "AIDE-246",
+      "mode": "reset-import",
+      "targetStatus": "Done",
+      "transition": "updated",
+      "previousTargetStatus": "In Progress",
+      "retestResult": "passed-after-remediation"
+    }
+  ],
+  "failed": [],
+  "fixed": []
+}

@@ -35,17 +35,17 @@ def test_content_chat_handles_gemini_rate_limit_and_provider_errors(read_source,
     )
 
 
-def test_audio_generation_paths_handle_gemini_and_elevenlabs_failures(read_source, expect_snippets):
+def test_audio_generation_paths_handle_model_and_tts_failures(read_source, expect_snippets):
     edge = read_source("supabase/functions/generate-podcast/index.ts")
     route = read_source("app/api/generate-audio/route.ts")
 
     expect_snippets(
         edge + route,
         [
-            "Gemini generation failed",
-            "Gemini returned empty script",
-            "ElevenLabs TTS failed",
-            "Missing API keys",
+            "Podcast generation failed. Please try again.",
+            "Gemini returned an empty script",
+            "Gemini TTS failed",
+            "missing required server configuration",
         ],
     )
 

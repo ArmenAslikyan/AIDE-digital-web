@@ -177,7 +177,7 @@ Rules:
     const responseData = await response.json();
     const jsonText = extractGeminiText(responseData);
     if (!jsonText) {
-      console.error("Gemini returned an empty scan response:", {
+      console.error("Gemini returned an empty response:", {
         promptFeedback: responseData?.promptFeedback ?? null,
         finishReason: responseData?.candidates?.[0]?.finishReason ?? null
       });

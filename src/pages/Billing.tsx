@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Check, Infinity, Loader2 } from "lucide-react";
+import { ArrowLeft, Check, Infinity as InfinityIcon, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useSettings } from "@/hooks/useSettings";
@@ -487,7 +487,7 @@ const Billing = () => {
                   <td className="text-center p-2">1</td>
                   <td className="text-center p-2">50/month</td>
                   <td className="text-center p-2">
-                    <Infinity className="h-4 w-4 inline text-accent" />
+                    <InfinityIcon className="h-4 w-4 inline text-accent" />
                   </td>
                 </tr>
                 <tr className="border-b">

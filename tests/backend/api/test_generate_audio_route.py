@@ -24,7 +24,7 @@ def test_generate_audio_route_declares_edge_post_handler(read_source, expect_sni
 def test_generate_audio_route_validates_env_topic_and_voice_before_provider_calls(read_source):
     source = read_source("app/api/generate-audio/route.ts")
 
-    env_index = source.index("if (!geminiKey || !elevenKey)")
+    env_index = source.index("if (!geminiKey || !elevenKey || !supabaseUrl || !serviceKey)")
     topic_index = source.index("if (!topic)")
     voice_index = source.index("if (!voiceId)")
     provider_index = source.index("const geminiRes = await fetch")

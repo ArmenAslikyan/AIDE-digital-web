@@ -23,7 +23,7 @@ def test_gumroad_webhook_validates_env_and_sale_before_mutation(read_source):
     source = read_source("supabase/functions/gumroad-webhook/index.ts")
 
     env_index = source.index('const supabaseUrl = Deno.env.get("SUPABASE_URL")')
-    verify_index = source.index("const isValidSale = await verifySaleWithGumroad")
+    verify_index = source.index("const verifiedSale = await verifySaleWithGumroad")
     mutation_index = source.index(".from('subscriptions')")
 
     assert env_index < verify_index < mutation_index

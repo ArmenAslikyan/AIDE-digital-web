@@ -388,7 +388,7 @@ ${knowledgeMapInstruction ?? ''}`.trim();
     }
     const jsonText = extractGeminiText(responseData);
     if (!jsonText) {
-      console.error("Gemini returned an empty analysis response:", {
+      console.error("Gemini returned an empty response:", {
         promptFeedback: responseData?.promptFeedback ?? null,
         finishReason: responseData?.candidates?.[0]?.finishReason ?? null
       });
@@ -399,7 +399,7 @@ ${knowledgeMapInstruction ?? ''}`.trim();
         headers: { ...corsHeaders, "Content-Type": "application/json" }
       });
     }
-    let analysis = parseGeminiJson(jsonText);
+    const analysis = parseGeminiJson(jsonText);
     const summaryItems = Array.isArray(analysis?.three_bullet_summary)
       ? analysis.three_bullet_summary.filter((item: unknown) => typeof item === "string" && item.trim().length > 0)
       : [];

@@ -8,12 +8,14 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+/.qa-venv
 dist
 dist-ssr
 *.local
 
 # Environment variables
 .env
+.env.jira
 .env.local
 .env.production
 .env.development

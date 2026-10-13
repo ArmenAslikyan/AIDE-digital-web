@@ -18,7 +18,7 @@ def test_checkout_requires_authenticated_user_before_returning_checkout_url(read
 def test_webhook_updates_subscription_after_gumroad_verification(read_source):
     source = read_source("supabase/functions/gumroad-webhook/index.ts")
 
-    verify_index = source.index("const isValidSale = await verifySaleWithGumroad")
+    verify_index = source.index("const verifiedSale = await verifySaleWithGumroad")
     active_index = source.index("status: 'active'")
     cancel_index = source.index("status: 'canceled'")
 

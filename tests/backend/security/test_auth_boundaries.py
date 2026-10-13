@@ -11,6 +11,7 @@ AUTH_REQUIRED_FUNCTIONS = [
     "supabase/functions/analyze-text/index.ts",
     "supabase/functions/content-chat/index.ts",
     "supabase/functions/delete-account/index.ts",
+    "supabase/functions/generate-podcast/index.ts",
     "supabase/functions/gumroad-checkout/index.ts",
     "supabase/functions/scan-knowledge-map/index.ts",
 ]
@@ -56,9 +57,7 @@ def test_user_content_queries_are_scoped_to_current_user(read_source, expect_sni
 
 
 def test_public_functions_are_explicitly_identified_for_followup_review(read_source):
-    generate_podcast = read_source("supabase/functions/generate-podcast/index.ts")
     webhook = read_source("supabase/functions/gumroad-webhook/index.ts")
 
-    assert ".auth.getUser()" not in generate_podcast
     assert ".auth.getUser()" not in webhook
     assert "verifySaleWithGumroad" in webhook
