@@ -6,9 +6,6 @@ prerequisites: Source files are available; provider requests remain mocked/unexe
 
 # ASSUMPTION: Timeout handling is currently explicit for analyze-text; other provider paths are flagged for future timeout wrappers.
 
-import pytest
-
-
 def test_analyze_text_wraps_gemini_fetch_with_abort_timeout(read_source, expect_snippets):
     source = read_source("supabase/functions/analyze-text/index.ts")
 
@@ -25,19 +22,25 @@ def test_analyze_text_wraps_gemini_fetch_with_abort_timeout(read_source, expect_
     )
 
 
-@pytest.mark.xfail(reason="content-chat currently calls Gemini without an explicit AbortController timeout.")
 def test_content_chat_should_have_explicit_provider_timeout(read_source):
     source = read_source("supabase/functions/content-chat/index.ts")
-    assert "AbortController" in source
+    assert "const AI_PROVIDER_TIMEOUT_MS =" in source
+    assert "AbortSignal.timeout(AI_PROVIDER_TIMEOUT_MS)" in source
+    assert "const response = await fetchWithTimeout(endpoint" in source
+    assert "status: timedOut ? 504 : 500" in source
 
 
-@pytest.mark.xfail(reason="generate-podcast currently calls Gemini and ElevenLabs without explicit timeout guards.")
 def test_generate_podcast_should_have_explicit_provider_timeouts(read_source):
     source = read_source("supabase/functions/generate-podcast/index.ts")
-    assert source.count("AbortController") >= 2
+    assert "AbortSignal.timeout(AI_PROVIDER_TIMEOUT_MS)" in source
+    assert "=> fetchWithTimeout(" in source
+    assert "const ttsRes = await fetchWithTimeout(" in source
+    assert "timedOut ? 504 : 500" in source
 
 
-@pytest.mark.xfail(reason="generate-audio API route currently calls Gemini and ElevenLabs without explicit timeout guards.")
 def test_generate_audio_route_should_have_explicit_provider_timeouts(read_source):
     source = read_source("app/api/generate-audio/route.ts")
-    assert source.count("AbortController") >= 2
+    assert "AbortSignal.timeout(AI_PROVIDER_TIMEOUT_MS)" in source
+    assert "const geminiRes = await fetchWithTimeout(GEMINI_ENDPOINT" in source
+    assert "const ttsRes = await fetchWithTimeout(" in source
+    assert "timedOut ? 504 : 500" in source

@@ -6,6 +6,10 @@ const DAILY_LIMIT_PRO = 50
 const GEMINI_PODCAST_MODEL = Deno.env.get('GEMINI_PODCAST_MODEL')?.trim() || 'gemini-2.5-flash'
 const GEMINI_DIALOGUE_FALLBACK_MODEL = 'gemini-2.5-flash'
 const GEMINI_TTS_MODEL = Deno.env.get('GEMINI_TTS_MODEL')?.trim() || 'gemini-3.1-flash-tts-preview'
+const AI_PROVIDER_TIMEOUT_MS = Math.max(Number(Deno.env.get('AI_PROVIDER_TIMEOUT_MS')?.trim() || '30000'), 1000)
+
+const fetchWithTimeout = (input: RequestInfo | URL, init: RequestInit): Promise<Response> =>
+  fetch(input, { ...init, signal: AbortSignal.timeout(AI_PROVIDER_TIMEOUT_MS) })
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -131,7 +135,7 @@ Use exactly two speakers named Joe and Jane and alternate them naturally for 6 t
 Content:
 ${topic.slice(0, 8000)}`
 
-    const requestGemini = (model: string, structured = false) => fetch(
+    const requestGemini = (model: string, structured = false) => fetchWithTimeout(
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
       {
         method: 'POST',
@@ -197,7 +201,7 @@ ${topic.slice(0, 8000)}`
     const dialogueText = script.turns
       .map((turn: { speaker: string; text: string }) => `${turn.speaker}: ${turn.text}`)
       .join('\n')
-    const ttsRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TTS_MODEL}:generateContent`, {
+    const ttsRes = await fetchWithTimeout(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TTS_MODEL}:generateContent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': geminiKey },
       body: JSON.stringify({
@@ -232,6 +236,7 @@ ${topic.slice(0, 8000)}`
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error'
     console.error('generate-podcast error:', message)
-    return jsonResponse({ error: 'An unexpected error occurred. Please try again.' }, 500)
+    const timedOut = error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')
+    return jsonResponse({ error: timedOut ? 'Podcast provider request timed out. Please try again.' : 'An unexpected error occurred. Please try again.' }, timedOut ? 504 : 500)
   }
 })

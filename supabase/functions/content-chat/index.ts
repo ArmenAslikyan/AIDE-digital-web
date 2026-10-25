@@ -6,6 +6,10 @@ const corsHeaders = {
 };
 const GEMINI_API_VERSION = Deno.env.get("GEMINI_API_VERSION")?.trim() || "v1beta";
 const GEMINI_MODEL = Deno.env.get("GEMINI_TEXT_MODEL")?.trim() || "gemini-flash-latest";
+const AI_PROVIDER_TIMEOUT_MS = Math.max(Number(Deno.env.get("AI_PROVIDER_TIMEOUT_MS")?.trim() || "30000"), 1000);
+
+const fetchWithTimeout = (input: RequestInfo | URL, init: RequestInit): Promise<Response> =>
+  fetch(input, { ...init, signal: AbortSignal.timeout(AI_PROVIDER_TIMEOUT_MS) });
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -149,7 +153,7 @@ ${historyContext}`;
     const selectedModel = GEMINI_MODEL;
     const selectedApiVersion = GEMINI_API_VERSION;
     const endpoint = `https://generativelanguage.googleapis.com/${selectedApiVersion}/models/${selectedModel}:streamGenerateContent?alt=sse&key=${apiKey}`;
-    const response = await fetch(endpoint, {
+    const response = await fetchWithTimeout(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -261,9 +265,10 @@ ${historyContext}`;
     });
   } catch (err) {
     const error = err as Error;
+    const timedOut = error.name === "TimeoutError" || error.name === "AbortError";
     console.error("Content chat error:", error.message);
-    return new Response(JSON.stringify({ error: "An unexpected error occurred. Please try again." }), {
-      status: 500,
+    return new Response(JSON.stringify({ error: timedOut ? "AI response timed out. Please try again." : "An unexpected error occurred. Please try again." }), {
+      status: timedOut ? 504 : 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" }
     });
   }

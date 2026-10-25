@@ -3,6 +3,10 @@ export const runtime = 'edge'
 const GEMINI_ENDPOINT =
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 const ELEVENLABS_ENDPOINT = 'https://api.elevenlabs.io/v1/text-to-speech'
+const AI_PROVIDER_TIMEOUT_MS = Math.max(Number(process.env.AI_PROVIDER_TIMEOUT_MS || 30000), 1000)
+
+const fetchWithTimeout = (input: RequestInfo | URL, init: RequestInit): Promise<Response> =>
+  fetch(input, { ...init, signal: AbortSignal.timeout(AI_PROVIDER_TIMEOUT_MS) })
 
 const DAILY_LIMITS: Record<string, number> = {
   free: 2,
@@ -141,7 +145,7 @@ export async function POST(req: Request) {
 
     const prompt = `Create a concise, engaging 1-minute podcast-style script for a student about: ${topic}. Keep it clear, energetic, and focused on the key insight. End with a one-sentence takeaway.`
 
-    const geminiRes = await fetch(GEMINI_ENDPOINT, {
+    const geminiRes = await fetchWithTimeout(GEMINI_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -167,7 +171,7 @@ export async function POST(req: Request) {
       return jsonResponse({ error: 'Audio generation failed' }, 502)
     }
 
-    const ttsRes = await fetch(`${ELEVENLABS_ENDPOINT}/${encodeURIComponent(voiceId)}`, {
+    const ttsRes = await fetchWithTimeout(`${ELEVENLABS_ENDPOINT}/${encodeURIComponent(voiceId)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -196,6 +200,7 @@ export async function POST(req: Request) {
     return new Response(ttsRes.body, { status: 200, headers: { 'Content-Type': contentType } })
   } catch (error) {
     console.error('generate-audio: unexpected error', error)
-    return jsonResponse({ error: 'Audio generation failed' }, 500)
+    const timedOut = error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')
+    return jsonResponse({ error: timedOut ? 'Audio provider request timed out' : 'Audio generation failed' }, timedOut ? 504 : 500)
   }
 }
